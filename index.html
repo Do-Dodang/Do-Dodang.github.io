@@ -1,1 +1,884 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조수정 포트폴리오</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #4a5a3a;
+            line-height: 1.7;
+            transition: background 0.8s ease, color 0.6s ease;
+        }
+
+        body.dark {
+            color: #e0f0d0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 100px 20px 60px;
+            background: rgba(250,255,235,0.7);
+            border-radius: 40px;
+            margin-bottom: 60px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(205, 220, 57, 0.2);
+            position: relative;
+            animation: fadeInDown 0.8s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: all 0.8s ease;
+        }
+
+        body.dark header {
+            background: rgba(30, 40, 20, 0.7);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile-circle {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #ffeb3b 0%, #cddc39 50%, #9ccc65 100%);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            box-shadow: 0 4px 15px rgba(205, 220, 57, 0.5);
+            animation: float 3s ease-in-out infinite;
+            transition: box-shadow 0.8s ease;
+        }
+
+        body.dark .profile-circle {
+            box-shadow: 0 4px 25px rgba(156, 204, 101, 0.7);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffeb3b 0%, #cddc39 50%, #9ccc65 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            right: -15px;
+            bottom: 5px;
+            width: 3px;
+            height: 35px;
+            background: #9ccc65;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #7a8a6a;
+            margin-bottom: 20px;
+            font-weight: 400;
+            animation: fadeIn 1s ease 0.3s both;
+            transition: color 0.6s ease;
+        }
+
+        body.dark .subtitle {
+            color: #b0c090;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .intro {
+            font-size: 1.15em;
+            color: #7cb342;
+            font-weight: 500;
+            padding: 15px 30px;
+            background: rgba(124, 179, 66, 0.15);
+            border-radius: 30px;
+            display: inline-block;
+            animation: fadeIn 1s ease 0.6s both;
+            transition: all 0.6s ease;
+        }
+
+        body.dark .intro {
+            color: #9ccc65;
+            background: rgba(156, 204, 101, 0.25);
+        }
+
+        .section {
+            margin-bottom: 70px;
+            animation: fadeInUp 0.8s ease both;
+            min-height: 80vh;
+            padding: 60px 0;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 2.3em;
+            margin-bottom: 35px;
+            color: #7cb342;
+            font-weight: 600;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+            transition: color 0.6s ease;
+        }
+
+        body.dark .section-title {
+            color: #9ccc65;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #ffeb3b, #cddc39, #9ccc65);
+            border-radius: 2px;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1em;
+            line-height: 2;
+            color: #5a6a4a;
+        }
+
+        body.dark .about-content {
+            color: #c0d0b0;
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-card {
+            background: rgba(250,255,235,0.8);
+            padding: 35px;
+            padding-left: 40px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 20px rgba(205, 220, 57, 0.15);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body.dark .skill-card {
+            background: rgba(40, 50, 30, 0.7);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, #cddc39, #9ccc65);
+            box-shadow: 0 0 20px rgba(156, 204, 101, 0.6);
+            border-radius: 25px 0 0 25px;
+        }
+
+        body.dark .skill-card::before {
+            background: linear-gradient(180deg, #9ccc65, #7cb342);
+            box-shadow: 0 0 20px rgba(156, 204, 101, 0.8);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px) translateX(5px);
+            box-shadow: 0 12px 35px rgba(156, 204, 101, 0.3);
+            border-color: rgba(156, 204, 101, 0.4);
+        }
+
+        .skill-card h3 {
+            color: #7cb342;
+            margin-bottom: 18px;
+            font-size: 1.4em;
+            font-weight: 600;
+            transition: color 0.6s ease;
+        }
+
+        body.dark .skill-card h3 {
+            color: #9ccc65;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(124,179,66,0.15), rgba(156,204,101,0.15));
+            padding: 8px 18px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.95em;
+            color: #5a6a3a;
+            font-weight: 500;
+            border: 1.5px solid rgba(124,179,66,0.3);
+            transition: all 0.3s ease;
+        }
+
+        body.dark .skill-tag {
+            background: linear-gradient(135deg, rgba(156,204,101,0.2), rgba(124,179,66,0.2));
+            color: #c0e0a0;
+            border-color: rgba(156,204,101,0.4);
+        }
+
+        .skill-tag:hover {
+            background: linear-gradient(135deg, rgba(124,179,66,0.35), rgba(156,204,101,0.35));
+            transform: scale(1.08) translateY(-2px);
+            box-shadow: 0 4px 12px rgba(124, 179, 66, 0.4);
+        }
+
+        .education-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .education-item {
+            background: rgba(250,255,235,0.8);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(205, 220, 57, 0.15);
+            position: relative;
+            padding-left: 40px;
+            transition: all 0.3s ease;
+        }
+
+        body.dark .education-item {
+            background: rgba(40, 50, 30, 0.7);
+        }
+
+        .education-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, #cddc39, #9ccc65);
+            border-radius: 20px 0 0 20px;
+        }
+
+        .education-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 30px rgba(156, 204, 101, 0.3);
+        }
+
+        .education-item h3 {
+            color: #7cb342;
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        body.dark .education-item h3 {
+            color: #9ccc65;
+        }
+
+        .education-period {
+            color: #7a8a6a;
+            font-size: 0.95em;
+            margin-bottom: 10px;
+        }
+
+        body.dark .education-period {
+            color: #b0c090;
+        }
+
+        .education-item p {
+            color: #5a6a4a;
+            line-height: 1.8;
+        }
+
+        body.dark .education-item p {
+            color: #c0d0b0;
+        }
+
+        .projects-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .project-card {
+            background: rgba(250,255,235,0.8);
+            border-radius: 30px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 25px rgba(205, 220, 57, 0.15);
+            transition: all 0.5s ease;
+            position: relative;
+            padding-left: 6px;
+        }
+
+        body.dark .project-card {
+            background: rgba(40, 50, 30, 0.7);
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, #ffeb3b, #cddc39, #9ccc65);
+            box-shadow: 0 0 25px rgba(156, 204, 101, 0.7);
+            border-radius: 30px 0 0 30px;
+        }
+
+        .project-card:hover {
+            transform: scale(1.02) translateX(8px);
+            box-shadow: 0 12px 40px rgba(156, 204, 101, 0.25);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #f9fbe7 0%, #f0f4c3 50%, #dce775 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            transition: all 0.5s ease;
+        }
+
+        body.dark .project-image {
+            background: linear-gradient(135deg, #4a5a3a 0%, #5a6a4a 50%, #6a7a5a 100%);
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 35px;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .project-title {
+            font-size: 1.8em;
+            color: #4a5a3a;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        body.dark .project-title {
+            color: #e0f0d0;
+        }
+
+        .project-card:hover .project-title {
+            color: #7cb342;
+        }
+
+        .project-badge {
+            background: linear-gradient(135deg, #ffeb3b, #cddc39, #9ccc65);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .project-period {
+            color: #7a8a6a;
+            font-size: 0.95em;
+            margin-bottom: 10px;
+        }
+
+        body.dark .project-period {
+            color: #b0c090;
+        }
+
+        .project-desc {
+            color: #5a6a4a;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            transition: color 0.6s ease;
+        }
+
+        body.dark .project-desc {
+            color: #c0d0b0;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(124,179,66,0.2);
+            border: 1.5px solid rgba(124,179,66,0.4);
+            border-radius: 20px;
+            color: #5a6a3a;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        body.dark .project-link {
+            background: rgba(156,204,101,0.2);
+            border-color: rgba(156,204,101,0.4);
+            color: #c0e0a0;
+        }
+
+        .project-link:hover {
+            background: rgba(124,179,66,0.4);
+            transform: translateY(-2px);
+        }
+
+        .contact-section {
+            background: rgba(250,255,235,0.7);
+            padding: 50px;
+            border-radius: 40px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(205, 220, 57, 0.2);
+            position: relative;
+            padding-left: 56px;
+            transition: all 0.8s ease;
+        }
+
+        body.dark .contact-section {
+            background: rgba(30, 40, 20, 0.7);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, #ffeb3b, #cddc39, #9ccc65);
+            box-shadow: 0 0 25px rgba(156, 204, 101, 0.6);
+            border-radius: 40px 0 0 40px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, rgba(124,179,66,0.1), rgba(156,204,101,0.1));
+            padding: 35px;
+            border-radius: 25px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body.dark .contact-card {
+            background: linear-gradient(135deg, rgba(156,204,101,0.15), rgba(124,179,66,0.15));
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            border-color: rgba(124, 179, 66, 0.5);
+            box-shadow: 0 8px 25px rgba(156, 204, 101, 0.3);
+        }
+
+        .contact-icon {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+        }
+
+        .contact-card h3 {
+            color: #7cb342;
+            margin-bottom: 12px;
+            font-size: 1.15em;
+            font-weight: 600;
+            transition: color 0.6s ease;
+        }
+
+        body.dark .contact-card h3 {
+            color: #9ccc65;
+        }
+
+        .contact-card a {
+            color: #7cb342;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            word-break: break-all;
+        }
+
+        body.dark .contact-card a {
+            color: #9ccc65;
+        }
+
+        .contact-card a:hover {
+            color: #9ccc65;
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: rgba(124, 179, 66, 0.9);
+            color: white;
+            border-radius: 30px;
+            font-size: 0.9em;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(124, 179, 66, 0.4);
+        }
+
+        body.dark .scroll-indicator {
+            background: rgba(156, 204, 101, 0.9);
+            box-shadow: 0 4px 15px rgba(156, 204, 101, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            .project-header { flex-direction: column; align-items: flex-start; }
+            .scroll-indicator { font-size: 0.8em; padding: 10px 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-indicator">📍 Header</div>
+    
+    <div class="container">
+        <header id="header">
+            <div class="profile-circle">🍋🍃</div>
+            <h1>조수정</h1>
+            <p class="subtitle">신입 클라이언트 프로그래머</p>
+            <p class="intro">"즐거움을 만들고, 즐겁게 만드는 개발자"</p>
+        </header>
+
+        <section class="section" id="about">
+            <h2 class="section-title">About</h2>
+            <div class="about-content">
+                <p>
+                    안녕하세요! 게임 개발에 열정을 가진 신입 클라이언트 프로그래머 조수정입니다.
+                </p>
+                <p>
+                    Unity를 활용한 2D 게임 개발에 집중하고 있으며, 플레이어에게 즐거운 경험을 제공하는 게임을 만들고 싶습니다. 
+                    코드를 작성하는 과정 자체를 즐기며, 문제 해결 과정에서 성장하는 것을 좋아합니다.
+                </p>
+                <p>
+                    끊임없이 배우고 성장하는 개발자가 되기 위해 노력하고 있습니다.
+                </p>
+            </div>
+        </section>
+
+        <section class="section" id="skills">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>🎮 Game Engine</h3>
+                    <div>
+                        <span class="skill-tag">Unity 6</span>
+                        <span class="skill-tag">Unity 2D</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>💻 Programming</h3>
+                    <div>
+                        <span class="skill-tag">C#</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">C++</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>🛠️ Tools & Assets</h3>
+                    <div>
+                        <span class="skill-tag">DOTween</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">Visual Studio</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>📚 Studying</h3>
+                    <div>
+                        <span class="skill-tag">Unity 3D</span>
+                        <span class="skill-tag">Shader</span>
+                        <span class="skill-tag">디자인 패턴</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="education">
+            <h2 class="section-title">Education</h2>
+            <div class="education-timeline">
+                <div class="education-item">
+                    <h3>게임 개발 부트캠프</h3>
+                    <p class="education-period">2024.03 - 2024.09 (6개월)</p>
+                    <p>Unity 기반 게임 개발 집중 과정 수료<br>
+                    프로젝트 기반 학습을 통한 실전 경험 습득</p>
+                </div>
+                <div class="education-item">
+                    <h3>컴퓨터공학과</h3>
+                    <p class="education-period">2020.03 - 2024.02</p>
+                    <p>자료구조, 알고리즘, 객체지향 프로그래밍 등 전공 기초 학습<br>
+                    졸업 프로젝트: Unity 2D 플랫포머 게임 개발</p>
+                </div>
+                <div class="education-item">
+                    <h3>온라인 강의</h3>
+                    <p class="education-period">2023 - 현재</p>
+                    <p>Unity 중급 개발 과정, C# 디자인 패턴 강의 수강<br>
+                    지속적인 자기 학습을 통한 기술 역량 강화</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="projects">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-container">
+                <div class="project-card">
+                    <div class="project-image">🎮</div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">2D 플랫포머 게임 "Jump!"</h3>
+                            <span class="project-badge">개인</span>
+                        </div>
+                        <p class="project-period">2024.06 - 2024.08 (2개월)</p>
+                        <p class="project-desc">
+                            Unity 2D를 활용한 플랫포머 게임입니다. DOTween을 사용하여 부드러운 캐릭터 애니메이션과 UI 전환 효과를 구현했으며, 
+                            타일맵 시스템을 활용한 레벨 디자인을 경험했습니다. 총 15개의 스테이지로 구성되어 있습니다.
+                        </p>
+                        <div>
+                            <span class="skill-tag">Unity 2D</span>
+                            <span class="skill-tag">C#</span>
+                            <span class="skill-tag">DOTween</span>
+                            <span class="skill-tag">Tilemap</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">🔗 GitHub</a>
+                            <a href="#" class="project-link">🎮 Play Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">🌟</div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">타워 디펜스 "Guardian"</h3>
+                            <span class="project-badge">팀</span>
+                        </div>
+                        <p class="project-period">2024.03 - 2024.05 (3개월)</p>
+                        <p class="project-desc">
+                            4인 팀 프로젝트로 진행한 타워 디펜스 게임입니다. GitHub을 통한 버전 관리와 협업을 경험했으며, 
+                            적 AI 시스템과 타워 업그레이드 시스템 개발을 담당했습니다. Object Pooling을 활용하여 성능을 최적화했습니다.
+                        </p>
+                        <div>
+                            <span class="skill-tag">Unity 2D</span>
+                            <span class="skill-tag">C#</span>
+                            <span class="skill-tag">GitHub</span>
+                            <span class="skill-tag">AI</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">🔗 GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">🎯</div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">퍼즐 게임 "Color Match"</h3>
+                            <span class="project-badge">개인</span>
+                        </div>
+                        <p class="project-period">2024.01 - 2024.02 (2개월)</p>
+                        <p class="project-desc">
+                            색상 매칭 퍼즐 게임입니다. ScriptableObject를 활용한 데이터 관리 시스템을 구현했으며, 
+                            PlayerPrefs를 사용한 점수 저장 기능과 레벨별 난이도 조절 시스템을 개발했습니다.
+                        </p>
+                        <div>
+                            <span class="skill-tag">Unity 2D</span>
+                            <span class="skill-tag">C#</span>
+                            <span class="skill-tag">ScriptableObject</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">🔗 GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">🏃</div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">러너 게임 "Endless Run"</h3>
+                            <span class="project-badge">팀</span>
+                        </div>
+                        <p class="project-period">2023.11 - 2023.12 (2개월)</p>
+                        <p class="project-desc">
+                            3인 팀으로 제작한 무한 러너 게임입니다. 절차적 레벨 생성 시스템을 구현했으며, 
+                            난이도가 점진적으로 증가하는 시스템을 담당했습니다. 모바일 터치 입력 처리와 최적화 작업을 수행했습니다.
+                        </p>
+                        <div>
+                            <span class="skill-tag">Unity 2D</span>
+                            <span class="skill-tag">C#</span>
+                            <span class="skill-tag">Mobile</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">🔗 GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <div class="contact-section">
+                <h2 class="section-title">Contact</h2>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <h3>Email</h3>
+                        <a href="mailto:sujung.jo@example.com">sujung.jo@example.com</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">💻</div>
+                        <h3>GitHub</h3>
+                        <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📝</div>
+                        <h3>Notion</h3>
+                        <a href="https://notion.so/yourpage" target="_blank">notion.so/yourpage</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const sections = [
+            { id: 'header', name: 'Header', theme: 'light' },
+            { id: 'about', name: 'About', theme: 'dark' },
+            { id: 'skills', name: 'Skills', theme: 'light' },
+            { id: 'education', name: 'Education', theme: 'dark' },
+            { id: 'projects', name: 'Projects', theme: 'light' },
+            { id: 'contact', name: 'Contact', theme: 'dark' }
+        ];
+
+        const lightBg = 'linear-gradient(135deg, #faffeb 0%, #f0f4c3 50%, #e6ee9c 70%, #dce775 100%)';
+        const darkBg = 'linear-gradient(135deg, #1a2a1a 0%, #2a3a2a 50%, #3a4a3a 100%)';
+
+        const indicator = document.querySelector('.scroll-indicator');
+        const body = document.body;
+
+        function updateTheme() {
+            const scrollPosition = window.scrollY + window.innerHeight / 2;
+            let currentSection = sections[0];
+            
+            for (let section of sections) {
+                const element = document.getElementById(section.id);
+                if (!element) continue;
+                
+                const rect = element.getBoundingClientRect();
+                const elementTop = rect.top + window.scrollY;
+                const elementBottom = elementTop + rect.height;
+                
+                if (scrollPosition >= elementTop && scrollPosition <= elementBottom) {
+                    currentSection = section;
+                    break;
+                }
+            }
+            
+            if (currentSection.theme === 'dark') {
+                body.classList.add('dark');
+                body.style.background = darkBg;
+            } else {
+                body.classList.remove('dark');
+                body.style.background = lightBg;
+            }
+            
+            indicator.textContent = `📍 ${currentSection.name}`;
+        }
+
+        updateTheme();
+
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    updateTheme();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    </script>
+</body>
+</html>
