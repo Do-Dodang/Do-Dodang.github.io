@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JoSujung Portfolio</title>
+    <title>조수정 포트폴리오</title>
     <style>
         * {
             margin: 0;
@@ -135,11 +135,19 @@
             display: inline-block;
             animation: fadeIn 1s ease 0.6s both;
             transition: all 0.6s ease;
+            position: relative;
         }
 
         body.dark .intro {
             color: #9ccc65;
             background: rgba(156, 204, 101, 0.25);
+        }
+
+        .intro::after {
+            content: '|';
+            position: absolute;
+            right: -10px;
+            animation: blink 1s infinite;
         }
 
         .section {
@@ -541,14 +549,9 @@
 
         body.dark .contact-card {
             background: linear-gradient(135deg, rgba(156,204,101,0.15), rgba(124,179,66,0.15));
-            /* background: linear-gradient(135deg, #cddc39, #9ccc65); */
         }
 
-        body.dark.contact-card:hover {
-            background: linear-gradient(135deg, #ffffff, #9ccc65);
-        }
-
-        .contact-card:hover {        
+        .contact-card:hover {
             transform: translateY(-8px) scale(1.03);
             border-color: rgba(124, 179, 66, 0.5);
             box-shadow: 0 8px 25px rgba(156, 204, 101, 0.3);
@@ -623,7 +626,7 @@
             <div class="profile-circle">🍋🍃</div>
             <h1>조수정</h1>
             <p class="subtitle">신입 클라이언트 프로그래머</p>
-            <p class="intro">"즐거움을 즐겁게 만드는 개발자 입니다."</p>
+            <p class="intro" id="typing-text"></p>
         </header>
 
         <section class="section" id="about">
@@ -633,11 +636,10 @@
                     안녕하세요! 게임 개발에 열정을 가진 신입 클라이언트 프로그래머 조수정입니다.
                 </p>
                 <p>
-                    지금은 Unity를 활용한 2D 게임 개발에 집중하고 있으며, 플레이어에게 즐거운 경험을 제공하는 게임을 만들고 싶습니다. 
+                    Unity를 활용한 2D 게임 개발에 집중하고 있으며, 플레이어에게 즐거운 경험을 제공하는 게임을 만들고 싶습니다. 
                     코드를 작성하는 과정 자체를 즐기며, 문제 해결 과정에서 성장하는 것을 좋아합니다.
                 </p>
                 <p>
-                    Unity뿐만 아니라 서버, DB, 웹에도 관심을 가지고 있으며,
                     끊임없이 배우고 성장하는 개발자가 되기 위해 노력하고 있습니다.
                 </p>
             </div>
@@ -829,6 +831,45 @@
     </div>
 
     <script>
+        // 타이핑 효과
+        const typingText = document.getElementById('typing-text');
+        const text = '"즐거움을 만들고, 즐겁게 만드는 개발자"';
+        let index = 0;
+        let isDeleting = false;
+        let isPaused = false;
+
+        function typeEffect() {
+            if (isPaused) {
+                setTimeout(typeEffect, 2000);
+                isPaused = false;
+                return;
+            }
+
+            if (!isDeleting && index <= text.length) {
+                typingText.textContent = text.substring(0, index);
+                index++;
+
+                if (index > text.length) {
+                    isPaused = true;
+                    isDeleting = true;
+                }
+                setTimeout(typeEffect, 100);
+            } else if (isDeleting && index >= 0) {
+                typingText.textContent = text.substring(0, index);
+                index--;
+
+                if (index < 0) {
+                    isPaused = true;
+                    isDeleting = false;
+                    index = 0;
+                }
+                setTimeout(typeEffect, 50);
+            }
+        }
+
+        // 페이지 로드 후 1초 뒤에 타이핑 시작
+        setTimeout(typeEffect, 1000);
+
         const sections = [
             { id: 'header', name: 'Header', theme: 'light' },
             { id: 'about', name: 'About', theme: 'dark' },
