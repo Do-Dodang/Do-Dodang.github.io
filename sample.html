@@ -2,509 +2,51 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>조수정 포트폴리오</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #3d3d3d;
-            line-height: 1.6;
-            transition: background 0.6s ease, color 0.6s ease;
-        }
-
-        /* 다크 모드 스타일 */
-        body.dark {
-            color: #e4e4e4;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        header {
-            text-align: center;
-            padding: 120px 20px 80px;
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        h1 {
-            font-size: 5em;
-            margin-bottom: 20px;
-            transition: all 0.6s ease;
-        }
-
-        body:not(.dark) h1 {
-            color: #2d2d2d;
-            text-shadow: 0 2px 10px rgba(255,107,107,0.15);
-        }
-
-        body.dark h1 {
-            color: #fff;
-            text-shadow: 0 0 30px rgba(255,107,107,0.5);
-        }
-
-        .name-eng {
-            font-size: 1.2em;
-            color: #d65a5a;
-            margin-bottom: 10px;
-            letter-spacing: 3px;
-            font-weight: 600;
-        }
-
-        body.dark .name-eng {
-            color: #ff6b6b;
-        }
-
-        .subtitle {
-            font-size: 1.4em;
-            margin-bottom: 25px;
-            font-weight: 500;
-            transition: color 0.6s ease;
-        }
-
-        body:not(.dark) .subtitle {
-            color: #6d6d6d;
-        }
-
-        body.dark .subtitle {
-            color: #a0a0a0;
-        }
-
-        .intro {
-            font-size: 1.3em;
-            font-weight: 600;
-            transition: color 0.6s ease;
-        }
-
-        body:not(.dark) .intro {
-            color: #3ba89f;
-        }
-
-        body.dark .intro {
-            color: #4ecdc4;
-        }
-
-        .section {
-            margin-bottom: 80px;
-            min-height: 80vh;
-            padding: 60px 0;
-        }
-
-        .section-title {
-            font-size: 2.8em;
-            margin-bottom: 40px;
-            text-align: center;
-            position: relative;
-            font-weight: 700;
-            transition: color 0.6s ease;
-        }
-
-        body:not(.dark) .section-title {
-            color: #2d2d2d;
-        }
-
-        body.dark .section-title {
-            color: #fff;
-        }
-
-        .section-title span {
-            background: linear-gradient(135deg, #d65a5a, #3ba89f);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        body.dark .section-title span {
-            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .skill-card {
-            padding: 35px;
-            border-radius: 20px;
-            border: 2px solid;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-
-        body:not(.dark) .skill-card {
-            background: rgba(255,255,255,0.8);
-            border-color: rgba(214,90,90,0.2);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        body.dark .skill-card {
-            background: rgba(255,255,255,0.03);
-            border-color: rgba(255,107,107,0.3);
-        }
-
-        .skill-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        body:not(.dark) .skill-card::before {
-            background: linear-gradient(135deg, rgba(214,90,90,0.08), rgba(59,168,159,0.08));
-        }
-
-        body.dark .skill-card::before {
-            background: linear-gradient(135deg, rgba(255,107,107,0.2), rgba(78,205,196,0.2));
-        }
-
-        .skill-card:hover {
-            transform: translateY(-10px) scale(1.02);
-        }
-
-        body:not(.dark) .skill-card:hover {
-            border-color: rgba(59,168,159,0.4);
-            box-shadow: 0 12px 35px rgba(59,168,159,0.2);
-        }
-
-        body.dark .skill-card:hover {
-            border-color: rgba(78,205,196,0.6);
-        }
-
-        .skill-card:hover::before {
-            opacity: 1;
-        }
-
-        .skill-card h3 {
-            margin-bottom: 20px;
-            font-size: 1.5em;
-            position: relative;
-            z-index: 1;
-            font-weight: 600;
-            transition: color 0.6s ease;
-        }
-
-        body:not(.dark) .skill-card h3 {
-            color: #d65a5a;
-        }
-
-        body.dark .skill-card h3 {
-            color: #ff6b6b;
-        }
-
-        .skill-tags {
-            position: relative;
-            z-index: 1;
-        }
-
-        .skill-tag {
-            display: inline-block;
-            padding: 8px 18px;
-            border-radius: 25px;
-            margin: 6px;
-            font-size: 0.95em;
-            border: 1.5px solid;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        body:not(.dark) .skill-tag {
-            background: rgba(59,168,159,0.15);
-            border-color: rgba(59,168,159,0.3);
-            color: #2d2d2d;
-        }
-
-        body.dark .skill-tag {
-            background: rgba(78,205,196,0.2);
-            border-color: rgba(78,205,196,0.5);
-            color: #e4e4e4;
-        }
-
-        .skill-tag:hover {
-            transform: scale(1.1);
-        }
-
-        body:not(.dark) .skill-tag:hover {
-            background: rgba(59,168,159,0.25);
-            border-color: rgba(59,168,159,0.5);
-        }
-
-        body.dark .skill-tag:hover {
-            background: rgba(78,205,196,0.4);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
-            gap: 30px;
-        }
-
-        .project-card {
-            border-radius: 20px;
-            overflow: hidden;
-            border: 2px solid;
-            transition: all 0.4s ease;
-            position: relative;
-        }
-
-        body:not(.dark) .project-card {
-            background: rgba(255,255,255,0.9);
-            border-color: rgba(214,90,90,0.15);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-        }
-
-        body.dark .project-card {
-            background: rgba(255,255,255,0.03);
-            border-color: transparent;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-        }
-
-        body:not(.dark) .project-card:hover {
-            border-color: #d65a5a;
-            box-shadow: 0 20px 40px rgba(214,90,90,0.2);
-        }
-
-        body.dark .project-card:hover {
-            border-color: #ff6b6b;
-            box-shadow: 0 20px 40px rgba(255,107,107,0.3);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, #f093a7 0%, #c97f9d 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3em;
-            transition: background 0.6s ease;
-        }
-
-        body.dark .project-image {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: rgba(255,255,255,0.3);
-        }
-
-        body:not(.dark) .project-image {
-            color: rgba(255,255,255,0.7);
-        }
-
-        .project-content {
-            padding: 30px;
-        }
-
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .project-title {
-            font-size: 1.6em;
-            font-weight: 600;
-            transition: color 0.6s ease;
-        }
-
-        body:not(.dark) .project-title {
-            color: #2d2d2d;
-        }
-
-        body.dark .project-title {
-            color: #fff;
-        }
-
-        .project-badge {
-            color: white;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 600;
-            transition: background 0.6s ease;
-        }
-
-        body:not(.dark) .project-badge {
-            background: #d65a5a;
-        }
-
-        body.dark .project-badge {
-            background: #ff6b6b;
-        }
-
-        body:not(.dark) .project-badge.team {
-            background: #3ba89f;
-        }
-
-        body.dark .project-badge.team {
-            background: #4ecdc4;
-        }
-
-        .project-desc {
-            margin-bottom: 20px;
-            line-height: 1.7;
-            transition: color 0.6s ease;
-        }
-
-        body:not(.dark) .project-desc {
-            color: #555;
-        }
-
-        body.dark .project-desc {
-            color: #b0b0b0;
-        }
-
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .contact-card {
-            padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            border: 2px solid;
-            transition: all 0.3s ease;
-        }
-
-        body:not(.dark) .contact-card {
-            background: rgba(255,255,255,0.85);
-            border-color: rgba(214,90,90,0.2);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        body.dark .contact-card {
-            background: linear-gradient(135deg, rgba(255,107,107,0.15), rgba(78,205,196,0.15));
-            border-color: rgba(255,107,107,0.3);
-        }
-
-        .contact-card:hover {
-            transform: scale(1.05);
-        }
-
-        body:not(.dark) .contact-card:hover {
-            border-color: #3ba89f;
-            background: rgba(255,255,255,0.95);
-            box-shadow: 0 8px 25px rgba(59,168,159,0.15);
-        }
-
-        body.dark .contact-card:hover {
-            border-color: #4ecdc4;
-            background: linear-gradient(135deg, rgba(78,205,196,0.15), rgba(255,107,107,0.15));
-        }
-
-        .contact-icon {
-            font-size: 2.5em;
-            margin-bottom: 15px;
-        }
-
-        .contact-card h3 {
-            margin-bottom: 10px;
-            font-size: 1.2em;
-            font-weight: 600;
-            transition: color 0.6s ease;
-        }
-
-        body:not(.dark) .contact-card h3 {
-            color: #d65a5a;
-        }
-
-        body.dark .contact-card h3 {
-            color: #ff6b6b;
-        }
-
-        .contact-card a {
-            text-decoration: none;
-            font-size: 1em;
-            transition: color 0.3s ease;
-            font-weight: 500;
-        }
-
-        body:not(.dark) .contact-card a {
-            color: #3ba89f;
-        }
-
-        body.dark .contact-card a {
-            color: #4ecdc4;
-        }
-
-        body:not(.dark) .contact-card a:hover {
-            color: #2d2d2d;
-        }
-
-        body.dark .contact-card a:hover {
-            color: #fff;
-        }
-
-        /* 스크롤 인디케이터 */
-        .scroll-indicator {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 25px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            border-radius: 30px;
-            font-size: 0.9em;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 3em; }
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <!-- 반응형 -->
+    <title>JoSujung Portfolio</title>
+    <!-- 탭에 나오는 제목 -->
 </head>
 <body>
     <div class="scroll-indicator">📍 Header</div>
     
     <div class="container">
         <header id="header">
-            <div class="name-eng">JO SUJUNG</div>
+            <div class="profile-circle">🍋🍃</div>
             <h1>조수정</h1>
             <p class="subtitle">신입 클라이언트 프로그래머</p>
             <p class="intro">"즐거움을 만들고, 즐겁게 만드는 개발자"</p>
         </header>
 
+        <section class="section" id="about">
+            <h2 class="section-title">About</h2>
+            <div class="about-content">
+                <p>
+                    안녕하세요! 게임 개발에 열정을 가진 신입 클라이언트 프로그래머 조수정입니다.
+                </p>
+                <p>
+                    Unity를 활용한 2D 게임 개발에 집중하고 있으며, 플레이어에게 즐거운 경험을 제공하는 게임을 만들고 싶습니다. 
+                    코드를 작성하는 과정 자체를 즐기며, 문제 해결 과정에서 성장하는 것을 좋아합니다.
+                </p>
+                <p>
+                    끊임없이 배우고 성장하는 개발자가 되기 위해 노력하고 있습니다.
+                </p>
+            </div>
+        </section>
+
         <section class="section" id="skills">
-            <h2 class="section-title"><span>Skills</span></h2>
+            <h2 class="section-title">Skills</h2>
             <div class="skills-grid">
                 <div class="skill-card">
                     <h3>🎮 Game Engine</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Unity 6 (2D)</span>
+                    <div>
+                        <span class="skill-tag">Unity 6</span>
+                        <span class="skill-tag">Unity 2D</span>
                     </div>
                 </div>
                 <div class="skill-card">
                     <h3>💻 Programming</h3>
-                    <div class="skill-tags">
+                    <div>
                         <span class="skill-tag">C#</span>
                         <span class="skill-tag">C</span>
                         <span class="skill-tag">C++</span>
@@ -512,50 +54,141 @@
                 </div>
                 <div class="skill-card">
                     <h3>🛠️ Tools & Assets</h3>
-                    <div class="skill-tags">
+                    <div>
                         <span class="skill-tag">DOTween</span>
                         <span class="skill-tag">GitHub</span>
-                        <span class="skill-tag">[Header]</span>
+                        <span class="skill-tag">Visual Studio</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>📚 Studying</h3>
+                    <div>
+                        <span class="skill-tag">Unity 3D</span>
+                        <span class="skill-tag">Shader</span>
+                        <span class="skill-tag">디자인 패턴</span>
                     </div>
                 </div>
             </div>
         </section>
 
+        <section class="section" id="education">
+            <h2 class="section-title">Education</h2>
+            <div class="education-timeline">
+                <div class="education-item">
+                    <h3>게임 개발 부트캠프</h3>
+                    <p class="education-period">2024.03 - 2024.09 (6개월)</p>
+                    <p>Unity 기반 게임 개발 집중 과정 수료<br>
+                    프로젝트 기반 학습을 통한 실전 경험 습득</p>
+                </div>
+                <div class="education-item">
+                    <h3>컴퓨터공학과</h3>
+                    <p class="education-period">2020.03 - 2024.02</p>
+                    <p>자료구조, 알고리즘, 객체지향 프로그래밍 등 전공 기초 학습<br>
+                    졸업 프로젝트: Unity 2D 플랫포머 게임 개발</p>
+                </div>
+                <div class="education-item">
+                    <h3>온라인 강의</h3>
+                    <p class="education-period">2023 - 현재</p>
+                    <p>Unity 중급 개발 과정, C# 디자인 패턴 강의 수강<br>
+                    지속적인 자기 학습을 통한 기술 역량 강화</p>
+                </div>
+            </div>
+        </section>
+
         <section class="section" id="projects">
-            <h2 class="section-title"><span>Projects</span></h2>
-            <div class="projects-grid">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-container">
                 <div class="project-card">
                     <div class="project-image">🎮</div>
                     <div class="project-content">
                         <div class="project-header">
-                            <h3 class="project-title">프로젝트 제목</h3>
+                            <h3 class="project-title">2D 플랫포머 게임 "Jump!"</h3>
                             <span class="project-badge">개인</span>
                         </div>
+                        <p class="project-period">2024.06 - 2024.08 (2개월)</p>
                         <p class="project-desc">
-                            Unity 6 2D를 활용한 게임 프로젝트입니다. DOTween을 사용하여 부드러운 UI 애니메이션을 구현했습니다.
+                            Unity 2D를 활용한 플랫포머 게임입니다. DOTween을 사용하여 부드러운 캐릭터 애니메이션과 UI 전환 효과를 구현했으며, 
+                            타일맵 시스템을 활용한 레벨 디자인을 경험했습니다. 총 15개의 스테이지로 구성되어 있습니다.
                         </p>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Unity 6</span>
+                        <div>
+                            <span class="skill-tag">Unity 2D</span>
                             <span class="skill-tag">C#</span>
                             <span class="skill-tag">DOTween</span>
+                            <span class="skill-tag">Tilemap</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">🔗 GitHub</a>
+                            <a href="#" class="project-link">🎮 Play Demo</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="project-card">
-                    <div class="project-image">👥</div>
+                    <div class="project-image">🌟</div>
                     <div class="project-content">
                         <div class="project-header">
-                            <h3 class="project-title">팀 프로젝트</h3>
-                            <span class="project-badge team">팀</span>
+                            <h3 class="project-title">타워 디펜스 "Guardian"</h3>
+                            <span class="project-badge">팀</span>
                         </div>
+                        <p class="project-period">2024.03 - 2024.05 (3개월)</p>
                         <p class="project-desc">
-                            팀원들과 협업하여 진행한 프로젝트입니다. GitHub을 통한 버전 관리와 협업을 경험했습니다.
+                            4인 팀 프로젝트로 진행한 타워 디펜스 게임입니다. GitHub을 통한 버전 관리와 협업을 경험했으며, 
+                            적 AI 시스템과 타워 업그레이드 시스템 개발을 담당했습니다. Object Pooling을 활용하여 성능을 최적화했습니다.
                         </p>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Unity 6</span>
+                        <div>
+                            <span class="skill-tag">Unity 2D</span>
                             <span class="skill-tag">C#</span>
                             <span class="skill-tag">GitHub</span>
+                            <span class="skill-tag">AI</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">🔗 GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">🎯</div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">퍼즐 게임 "Color Match"</h3>
+                            <span class="project-badge">개인</span>
+                        </div>
+                        <p class="project-period">2024.01 - 2024.02 (2개월)</p>
+                        <p class="project-desc">
+                            색상 매칭 퍼즐 게임입니다. ScriptableObject를 활용한 데이터 관리 시스템을 구현했으며, 
+                            PlayerPrefs를 사용한 점수 저장 기능과 레벨별 난이도 조절 시스템을 개발했습니다.
+                        </p>
+                        <div>
+                            <span class="skill-tag">Unity 2D</span>
+                            <span class="skill-tag">C#</span>
+                            <span class="skill-tag">ScriptableObject</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">🔗 GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">🏃</div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">러너 게임 "Endless Run"</h3>
+                            <span class="project-badge">팀</span>
+                        </div>
+                        <p class="project-period">2023.11 - 2023.12 (2개월)</p>
+                        <p class="project-desc">
+                            3인 팀으로 제작한 무한 러너 게임입니다. 절차적 레벨 생성 시스템을 구현했으며, 
+                            난이도가 점진적으로 증가하는 시스템을 담당했습니다. 모바일 터치 입력 처리와 최적화 작업을 수행했습니다.
+                        </p>
+                        <div>
+                            <span class="skill-tag">Unity 2D</span>
+                            <span class="skill-tag">C#</span>
+                            <span class="skill-tag">Mobile</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">🔗 GitHub</a>
                         </div>
                     </div>
                 </div>
@@ -563,49 +196,53 @@
         </section>
 
         <section class="section" id="contact">
-            <h2 class="section-title"><span>Contact</span></h2>
-            <div class="contact-container">
-                <div class="contact-card">
-                    <div class="contact-icon">📧</div>
-                    <h3>Email</h3>
-                    <a href="mailto:your@email.com">your@email.com</a>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-icon">💻</div>
-                    <h3>GitHub</h3>
-                    <a href="#">github.com/yourid</a>
-                </div>
-                <div class="contact-card">
-                    <div class="contact-icon">📝</div>
-                    <h3>Notion</h3>
-                    <a href="#">Portfolio Link</a>
+            <div class="contact-section">
+                <h2 class="section-title">Contact</h2>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <h3>Email</h3>
+                        <a href="mailto:sujung.jo@example.com">sujung.jo@example.com</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">💻</div>
+                        <h3>GitHub</h3>
+                        <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📝</div>
+                        <h3>Notion</h3>
+                        <a href="https://notion.so/yourpage" target="_blank">notion.so/yourpage</a>
+                    </div>
                 </div>
             </div>
         </section>
     </div>
 
     <script>
-        // 색상 전환을 위한 설정
         const sections = [
             { id: 'header', name: 'Header', theme: 'light' },
-            { id: 'skills', name: 'Skills', theme: 'dark' },
+            { id: 'about', name: 'About', theme: 'dark' },
+            { id: 'skills', name: 'Skills', theme: 'light' },
+            { id: 'education', name: 'Education', theme: 'dark' },
             { id: 'projects', name: 'Projects', theme: 'light' },
             { id: 'contact', name: 'Contact', theme: 'dark' }
         ];
 
-        const lightBg = 'linear-gradient(135deg, #f5f0e8 0%, #e8dfd0 100%)';
-        const darkBg = 'linear-gradient(135deg, #0a0e27 0%, #16213e 100%)';
+        const lightBg = 'linear-gradient(135deg, #faffeb 0%, #f0f4c3 50%, #e6ee9c 70%, #dce775 100%)';
+        const darkBg = 'linear-gradient(135deg, #1a2a1a 0%, #2a3a2a 50%, #3a4a3a 100%)';
 
         const indicator = document.querySelector('.scroll-indicator');
         const body = document.body;
 
         function updateTheme() {
             const scrollPosition = window.scrollY + window.innerHeight / 2;
-            
             let currentSection = sections[0];
             
             for (let section of sections) {
                 const element = document.getElementById(section.id);
+                if (!element) continue;
+                
                 const rect = element.getBoundingClientRect();
                 const elementTop = rect.top + window.scrollY;
                 const elementBottom = elementTop + rect.height;
@@ -616,7 +253,6 @@
                 }
             }
             
-            // 테마 업데이트
             if (currentSection.theme === 'dark') {
                 body.classList.add('dark');
                 body.style.background = darkBg;
@@ -625,14 +261,11 @@
                 body.style.background = lightBg;
             }
             
-            // 인디케이터 업데이트
             indicator.textContent = `📍 ${currentSection.name}`;
         }
 
-        // 초기 설정
         updateTheme();
 
-        // 스크롤 이벤트
         let ticking = false;
         window.addEventListener('scroll', () => {
             if (!ticking) {
