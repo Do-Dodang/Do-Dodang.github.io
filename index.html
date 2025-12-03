@@ -132,7 +132,17 @@
         }
 
         .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background-color: #7cb342;
+            margin-left: 2px;
             animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        body.dark .cursor {
+            background-color: #9ccc65;
         }
 
         .section {
@@ -818,7 +828,7 @@
     <script>
         // 타이핑 효과
         const typingText = document.getElementById('typing-text');
-        const text = '"즐거움을 만들고, 즐겁게 만드는 개발자"';
+        const text = '즐거움을 만들고, 즐겁게 만드는 개발자';
         let index = 0;
         let isDeleting = false;
         let isPaused = false;
@@ -831,7 +841,7 @@
             }
 
             if (!isDeleting && index <= text.length) {
-                typingText.innerHTML = text.substring(0, index) + '<span class="cursor">|</span>';
+                typingText.innerHTML = '"' + text.substring(0, index) + '<span class="cursor"></span>"';
                 index++;
 
                 if (index > text.length) {
@@ -840,7 +850,7 @@
                 }
                 setTimeout(typeEffect, 100);
             } else if (isDeleting && index >= 0) {
-                typingText.innerHTML = text.substring(0, index) + '<span class="cursor">|</span>';
+                typingText.innerHTML = '"' + text.substring(0, index) + '<span class="cursor"></span>"';
                 index--;
 
                 if (index < 0) {
