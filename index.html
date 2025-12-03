@@ -541,9 +541,14 @@
 
         body.dark .contact-card {
             background: linear-gradient(135deg, rgba(156,204,101,0.15), rgba(124,179,66,0.15));
+            /* background: linear-gradient(135deg, #cddc39, #9ccc65); */
         }
 
-        .contact-card:hover {
+        body.dark.contact-card:hover {
+            background: linear-gradient(135deg, #ffffff, #9ccc65);
+        }
+
+        .contact-card:hover {        
             transform: translateY(-8px) scale(1.03);
             border-color: rgba(124, 179, 66, 0.5);
             box-shadow: 0 8px 25px rgba(156, 204, 101, 0.3);

@@ -1,0 +1,9 @@
+{
+    "claudeCode.environmentVariables": [
+        {
+            "name": "CLAUDE_LANGUAGE",
+            "value": "ko"
+        }
+    ],
+    "claudeCode.systemPrompt": "앞으로 모든 응답을 한국어로 제공해주세요. 코드와 기술 용어는 원문을 유지하되, 설명과 메시지는 한국어로 작성해주세요."
+}
